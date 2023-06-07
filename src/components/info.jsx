@@ -1,7 +1,38 @@
+/* eslint react/prop-types: 0*/
+
 import {Component} from 'react';
+import ApiService from "../apiService.js";
 
 class Info extends Component {
+
+    apiService = new ApiService()
+
+    state = {
+        info: {}
+    }
+
+    componentDidMount() {
+        this.updateInfo()
+    }
+
+    updateInfo = () => {
+        const {id} = this.props
+        this.apiService
+            .getPerson(id)
+            .then((info) => {
+                this.setState({info: info})
+            })
+    }
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (this.props.id !== prevProps.id) {
+            this.updateInfo()
+        }
+    }
+
+
     render() {
+        const {name, gender, mass, height} = this.state.info
         return (
             <div className="col-5">
                 <div>
@@ -9,10 +40,10 @@ class Info extends Component {
                          className="planet"/>
                 </div>
                 <div>
-                    <h1>Endor</h1>
-                    <p>Population: 216451314354</p>
-                    <p>Rotation Period: 15</p>
-                    <p>Diameter: 5646546 km</p>
+                    <h1>{name}</h1>
+                    <p>Gender: {gender}</p>
+                    <p>Mass: {mass} kg</p>
+                    <p>Height: {height} cm</p>
                 </div>
             </div>
         );
