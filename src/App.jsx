@@ -24,16 +24,19 @@ class App extends Component {
                 <Header/>
                 <RandomPlanet/>
                 <div className="row justify-content-between">
-                    <List clickOnItem={this.clickOnItem} getData={this.apiService.getAllPersons}/>
-                    <Info id={this.state.chosenId}/>
+                    <List clickOnItem={this.clickOnItem} getData={this.apiService.getAllPersons}
+                          render={(item) => `${item.name} - (${item.gender})`}/>
+                    <Info id={this.state.chosenId} getInfoData={this.apiService.getPerson}/>
                 </div>
                 <div className="row justify-content-between">
-                    <List clickOnItem={this.clickOnItem} getData={this.apiService.getAllStarships}/>
-                    <Info id={this.state.chosenId}/>
+                    <List clickOnItem={this.clickOnItem} getData={this.apiService.getAllStarships}
+                          render={(item) => `${item.name} - (${item.model})`}/>
+                    <Info id={this.state.chosenId} getInfoData={this.apiService.getStarship}/>
                 </div>
                 <div className="row justify-content-between">
-                    <List clickOnItem={this.clickOnItem} getData={this.apiService.getAllPlanets}/>
-                    <Info id={this.state.chosenId}/>
+                    <List clickOnItem={this.clickOnItem} getData={this.apiService.getAllPlanets}
+                          render={(item) => `${item.name} - (${item.terrain})`}/>
+                    <Info id={this.state.chosenId} getInfoData={this.apiService.getPlanet}/>
                 </div>
             </div>
         )
