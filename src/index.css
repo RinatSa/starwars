@@ -41,3 +41,13 @@ nav > ul > li {
 .col-5 li {
     border-bottom: 1px solid honeydew;
 }
+
+ul > li:hover {
+    color: gold;
+    cursor: pointer;
+}
+
+.person {
+    height: 35%;
+    width: 35%;
+}
