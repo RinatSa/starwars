@@ -1,6 +1,6 @@
 /* eslint react/prop-types: 0*/
 
-import {Component} from 'react';
+import {Children, cloneElement, Component} from 'react';
 import ApiService from "../apiService.js";
 
 class Info extends Component {
@@ -33,8 +33,7 @@ class Info extends Component {
 
 
     render() {
-        const {name, gender, mass, height} = this.state.info
-        const {image} = this.state
+        const {image, info} = this.state
         return (
             <div className="col-5">
                 <div>
@@ -42,10 +41,10 @@ class Info extends Component {
                          className="person"/>
                 </div>
                 <div>
-                    <h1>{name}</h1>
-                    <p>Gender: {gender}</p>
-                    <p>Mass: {mass} kg</p>
-                    <p>Height: {height} cm</p>
+                    <h1>{info.name}</h1>
+                    {Children.map(this.props.children, (child => {
+                        return cloneElement(child, {info})
+                    }))}
                 </div>
             </div>
         );
