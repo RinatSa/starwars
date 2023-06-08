@@ -32,6 +32,18 @@ class ApiService {
         const res = await fetch(`https://swapi.dev/api/starships/${id}`)
         return await res.json()
     }
+
+    getPersonImageUrl = (id) => {
+        return `https://starwars-visualguide.com/assets/img/characters/${id}.jpg`
+    }
+
+    getStarshipImageUrl = (id) => {
+        return `https://starwars-visualguide.com/assets/img/starships/${id}.jpg`
+    }
+
+    getPlanetImageUrl = (id) => {
+        return `https://starwars-visualguide.com/assets/img/planets/${id}.jpg`
+    }
 }
 
 export default ApiService
