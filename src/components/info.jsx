@@ -8,7 +8,8 @@ class Info extends Component {
     apiService = new ApiService()
 
     state = {
-        info: {}
+        info: {},
+        image: null
     }
 
     componentDidMount() {
@@ -17,13 +18,13 @@ class Info extends Component {
 
     updateInfo = () => {
         const {id} = this.props
-        this.apiService
-            .getPerson(id)
+        this.props.getInfoData(id)
             .then((info) => {
-                this.setState({info: info})
+                this.setState({info: info, image: this.props.getImageUrl(id)})
             })
     }
 
+    // eslint-disable-next-line no-unused-vars
     componentDidUpdate(prevProps, prevState, snapshot) {
         if (this.props.id !== prevProps.id) {
             this.updateInfo()
@@ -33,11 +34,12 @@ class Info extends Component {
 
     render() {
         const {name, gender, mass, height} = this.state.info
+        const {image} = this.state
         return (
             <div className="col-5">
                 <div>
-                    <img src="https://starwars-visualguide.com/assets/img/starships/13.jpg" alt=""
-                         className="planet"/>
+                    <img src={image} alt=""
+                         className="person"/>
                 </div>
                 <div>
                     <h1>{name}</h1>

@@ -26,17 +26,20 @@ class App extends Component {
                 <div className="row justify-content-between">
                     <List clickOnItem={this.clickOnItem} getData={this.apiService.getAllPersons}
                           render={(item) => `${item.name} - (${item.gender})`}/>
-                    <Info id={this.state.chosenId} getInfoData={this.apiService.getPerson}/>
+                    <Info id={this.state.chosenId} getInfoData={this.apiService.getPerson}
+                          getImageUrl={this.apiService.getPersonImageUrl}/>
                 </div>
                 <div className="row justify-content-between">
                     <List clickOnItem={this.clickOnItem} getData={this.apiService.getAllStarships}
                           render={(item) => `${item.name} - (${item.model})`}/>
-                    <Info id={this.state.chosenId} getInfoData={this.apiService.getStarship}/>
+                    <Info id={this.state.chosenId} getInfoData={this.apiService.getStarship}
+                          getImageUrl={this.apiService.getStarshipImageUrl}/>
                 </div>
                 <div className="row justify-content-between">
                     <List clickOnItem={this.clickOnItem} getData={this.apiService.getAllPlanets}
                           render={(item) => `${item.name} - (${item.terrain})`}/>
-                    <Info id={this.state.chosenId} getInfoData={this.apiService.getPlanet}/>
+                    <Info id={this.state.chosenId} getInfoData={this.apiService.getPlanet}
+                          getImageUrl={this.apiService.getPlanetImageUrl}/>
                 </div>
             </div>
         )
