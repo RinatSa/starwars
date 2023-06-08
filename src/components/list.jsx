@@ -1,3 +1,4 @@
+/* eslint react/prop-types: 0 */
 import {Component} from 'react';
 import ApiService from "../apiService.js";
 
@@ -6,7 +7,7 @@ class List extends Component {
     apiService = new ApiService()
 
     state = {
-        list: []
+        list: [],
     }
 
     componentDidMount() {
@@ -14,8 +15,7 @@ class List extends Component {
     }
 
     updateList = () => {
-        this.apiService
-            .getAllPersons()
+        this.props.getData()
             .then((list) => {
                 this.setState({list})
             })
@@ -27,14 +27,10 @@ class List extends Component {
             <div className="col-5">
                 <ul>
                     {list.map((item) => {
-                        return (<li key={item.name}>{item.name}</li>)
+                        const id = item.url.match(/\/([0-9]*)\/$/)[1]
+                        const label = this.props.render(item)
+                        return (<li key={id} onClick={() => this.props.clickOnItem(id)}>{label}</li>)
                     })}
-                    <li>A</li>
-                    <li>B</li>
-                    <li>C</li>
-                    <li>D</li>
-                    <li>E</li>
-                    <li>F</li>
                 </ul>
             </div>
         );
